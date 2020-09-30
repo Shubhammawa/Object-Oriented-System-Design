@@ -1,6 +1,7 @@
 // Operator Overloading
 
-// Example 1: Unary operator
+// Example 2: Unary operator
+// Change return type of overloaded operator
 #include <iostream>
 
 using namespace std;
@@ -16,8 +17,11 @@ class Counter{
         return count;
     }
 
-    void operator ++(){
+    Counter operator ++(){
         ++count;
+        Counter temp;
+        temp.count = count;
+        return temp;
     }
 };
 
@@ -28,15 +32,12 @@ int main(){
     cout << "\nc2 = " << c2.get_count();
 
     ++c1;
-    ++c2;
-    ++c1;
+    c2 = ++c1;
+
 
     cout << "\nc1 = " << c1.get_count();
     cout << "\nc2 = " << c2.get_count() << endl;
 
-    // c2++;   // should raise error as postfix operator ++ has not been overloaded
-
-    // cout <<"c2 = " << c2 << endl;
     return 0;
 
 }
